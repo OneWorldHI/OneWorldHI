@@ -1,0 +1,192 @@
+/* Homepage-only layout and presentation overrides.
+   Shared tokens, typography, header, footer, CTA, and interactions live in site.css. */
+
+h1 { max-width: 780px; }
+h3 { font-size: clamp(24px, 2.4vw, 34px); }
+
+.hero { min-height: min(830px, calc(100svh - 114px)); }
+.hero-media img { object-position: center; }
+.hero-media::after {
+  background: linear-gradient(90deg, rgba(7,26,45,.9) 0%, rgba(7,26,45,.67) 45%, rgba(7,26,45,.2) 76%);
+}
+.hero-content {
+  padding-block: clamp(90px, 13vw, 170px) clamp(68px, 9vw, 115px);
+}
+.hero p:not(.eyebrow) { max-width: 620px; }
+
+.intro { padding: clamp(90px, 11vw, 150px) 0 70px; }
+.intro-grid {
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 80px;
+}
+.intro-copy {
+  max-width: 520px;
+  color: var(--ink-soft);
+  font-size: 19px;
+}
+
+.services { padding-bottom: clamp(90px, 12vw, 160px); }
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.service {
+  min-height: min(650px, 66vw);
+  display: flex;
+  align-items: end;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--ink);
+}
+.service img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.2,.65,.25,1);
+}
+.service::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(7,25,42,.88), rgba(7,25,42,.04) 68%);
+}
+.service:hover img { transform: scale(1.025); }
+.service-content {
+  width: 100%;
+  padding: clamp(28px, 4vw, 52px);
+}
+.service-content::before {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 2px;
+  margin-bottom: 22px;
+  background: var(--brand-gold-light);
+}
+.service h3 { color: var(--white); }
+.service p {
+  max-width: 470px;
+  margin: 13px 0 22px;
+  color: #e5edf0;
+}
+.service .text-link { color: var(--white); }
+
+.feature {
+  padding: clamp(90px, 12vw, 160px) 0;
+  background: var(--cloud);
+}
+.split {
+  min-height: 650px;
+  display: grid;
+  grid-template-columns: 1.03fr .97fr;
+  background: var(--white);
+}
+.split-media img {
+  height: 100%;
+  object-fit: cover;
+}
+.split-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(42px, 7vw, 96px);
+}
+.split-copy > p:not(.eyebrow) {
+  margin: 26px 0 32px;
+  color: var(--ink-soft);
+  font-size: 18px;
+}
+.check-list {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 36px;
+  padding: 0;
+  list-style: none;
+}
+.check-list li {
+  display: flex;
+  gap: 12px;
+}
+.check-list li::before {
+  content: "✓";
+  color: var(--brand-gold-dark);
+  font-weight: 700;
+}
+
+.areas {
+  padding: clamp(86px, 11vw, 140px) 0;
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+.areas-grid {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  gap: clamp(48px, 9vw, 130px);
+}
+.areas-heading { max-width: 520px; }
+.areas-copy > p:first-child {
+  max-width: 690px;
+  color: var(--ink-soft);
+  font-size: 18px;
+}
+.area-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px 24px;
+  margin: 34px 0;
+  padding: 30px 0;
+  border-block: 1px solid var(--line);
+  list-style: none;
+}
+.area-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 14px;
+}
+.area-list li::before {
+  content: "";
+  position: absolute;
+  top: .7em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--brand-gold-dark);
+}
+.areas-regional { color: var(--brand-brown); font-weight: 600; }
+
+@media (max-width: 1050px) {
+  .intro-grid,
+  .split,
+  .areas-grid { grid-template-columns: 1fr; gap: 34px; }
+  .intro-copy { font-size: 17px; }
+  .service { min-height: 440px; }
+  .split { min-height: 0; }
+  .split-media { min-height: 460px; }
+}
+
+@media (max-width: 650px) {
+  .hero-media img { object-position: 62% center; }
+  .hero-media::after {
+    background: linear-gradient(90deg, rgba(7,26,45,.86), rgba(7,26,45,.35));
+  }
+  .service-grid { grid-template-columns: 1fr; gap: 8px; }
+  .service { min-height: 410px; }
+  .split-media { min-height: 330px; }
+  .split-copy { padding: 40px 24px 48px; }
+  .intro,
+  .feature { padding-block: 72px; }
+  .services { padding-bottom: 72px; }
+  .areas { padding-block: 72px; }
+  .area-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+}
+
+@media (max-height: 700px) and (min-width: 1051px) {
+  .split-copy { padding-block: 52px; }
+}
